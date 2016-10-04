@@ -22,7 +22,6 @@ class Ripple extends ClickEffect{
       ellipse(x, y, r, r);
       r += speed;
       c = color(red(c), green(c), blue(c), 255-(255*r/maxR));
-      println(alpha(c));
     } else{
       finished = true;
     }
@@ -30,6 +29,9 @@ class Ripple extends ClickEffect{
 
   void setSpeed(int speed){
     this.speed = speed;
+  }
+  void setColor(color c){
+    this.c = c;
   }
 
 }
