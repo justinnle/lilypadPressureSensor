@@ -23,8 +23,13 @@ class MultiRipple extends ClickEffect{
       }//eo for
       if((ripples.size() < numRipples) && (timer > interval)) {
         timer = 0;
-        ripples.add(ripple); //need to copy rather than add same object
-      } else if(ripples.size() == numRipples) {
+        ripples.add(new Ripple(ripple.x,
+                               ripple.y,
+                               ripple.minR,
+                               ripple.maxR,
+                               ripple.c)); //need to copy rather than add same object
+      } else if(ripples.size() == numRipples
+                && ripples.get(ripples.size()-1).finished) {
         finished = true;
       } else {
         timer += 1;
