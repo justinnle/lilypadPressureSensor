@@ -8,6 +8,11 @@ public class ClickEffect{
   boolean finished;
 
   ClickEffect(){}
-  void setup(){}
+  ClickEffect(float x, float y, color c){
+    this.x = x;
+    this.y = y;
+    this.c = c;
+  }
+
   void draw(){}
 }

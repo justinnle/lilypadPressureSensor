@@ -27,7 +27,7 @@ class MultiRipple extends ClickEffect{
                                ripple.y,
                                ripple.minR,
                                ripple.maxR,
-                               ripple.c)); //need to copy rather than add same object
+                               ripple.c));
       } else if(ripples.size() == numRipples
                 && ripples.get(ripples.size()-1).finished) {
         finished = true;

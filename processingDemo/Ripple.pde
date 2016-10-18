@@ -4,7 +4,9 @@ class Ripple extends ClickEffect{
   int maxR;
   int speed;
 
-  Ripple(float x, float y, int minR, int maxR, color c){
+  Ripple() {}
+
+  Ripple(float x, float y, int minR, int maxR, color c) {
     this.x = x;
     this.y = y;
     this.minR = minR;
@@ -15,7 +17,7 @@ class Ripple extends ClickEffect{
     finished = false;
   }
 
-  void draw(){
+  void draw() {
     if (r < maxR){
       noFill();
       stroke(c);
