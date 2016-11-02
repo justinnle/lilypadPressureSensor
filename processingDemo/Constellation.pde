@@ -5,18 +5,26 @@ class Constellation extends ClickEffect{
   boolean active;
   int delay;
 
-  Constellation(){}
+  int currentStar;
+
+  Constellation(){
+    stars = new ArrayList<Star>();
+  }
 
   Constellation(boolean active){
+    this();
     this.active = active;
   }
 
   Constellation(boolean active, int delay){
-    this.active = active;
+    this(active);
+    this.delay = delay;
   }
 
   void draw(){
-
+    for(Star s : stars){
+      s.draw();
+    }
   }
 
   void setMaxStars(int maxStars){this.maxStars = maxStars;}

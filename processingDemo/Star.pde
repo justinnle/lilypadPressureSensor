@@ -4,7 +4,7 @@ class Star extends ClickEffect{
   int interval;
 
   boolean twinkle;
-  int twinkleSpeed;
+  float twinkleSpeed;
   color originalColor;
   int twinkleCountMax;
   int twinkleCount;
@@ -18,29 +18,34 @@ class Star extends ClickEffect{
     twinkleCount = 0;
     twinkleCountMax = 10;
     interval = 50;
+    initTwinkleSpeed();
   }
 
   void draw(){
-    if(twinkle && (twinkleCount < twinkleCountMax)){
+    println(twinkleSpeed);
+    if(twinkle){//fix twinkle
       c = color(red(c) + twinkleSpeed,
                 green(c) + twinkleSpeed,
                 blue(c) + twinkleSpeed);
       twinkleCount += 1;
-    } else if(twinkleCount > 0) {
-      c = color(red(c) - twinkleSpeed,
-                green(c) - twinkleSpeed,
-                blue(c) - twinkleSpeed);
-      twinkleCount -= 1;
-    } else {
-      twinkle = false;
+      if(twinkleCount == twinkleCountMax){
+        twinkleSpeed *= -1;
+      } else if(twinkleCount == (twinkleCountMax * 2)){
+        twinkleSpeed *= -1;
+        twinkle = false;
+        twinkleCount = 0;
+        c = originalColor;
+      }
     }
     fill(c);
     ellipse(x,y,r,r);
     if(timer > interval){
       twinkle = true;
-      println("twinkle on");
+      timer = 0;
     } else {
-      timer += 1;
+      if(!twinkle) {
+        timer += 1;
+      }
     }
   }
 
@@ -48,8 +53,8 @@ class Star extends ClickEffect{
 
   void twinkleCount(int twinkleCountMax){this.twinkleCountMax = twinkleCountMax;}
 
-  void setTwinkleSpeed(){
-    int max = (int)(max(red(c), green(c), blue(c)));
+  void initTwinkleSpeed(){
+    float max = (max(red(c), green(c), blue(c)));
     twinkleSpeed = (255 - max) / twinkleCountMax;
   }
 }
